@@ -1,0 +1,42 @@
+{
+  "name": "testy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
+  "author": "Andres Alvarez <a.alvarez.sor@gmail.com>",
+  "scripts": {
+    "build:esm": "tsc --module es2015 --outDir dist/esm",
+    "build:umd": "webpack",
+    "clean": "rimraf dist",
+    "build": "npm run clean && npm run build:esm && npm run build:umd",
+    "test": "jest"
+  },
+  "libraryConfig": {
+    "name": "Testy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andresz1/testy.git"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andresz1/testy/issues"
+  },
+  "homepage": "https://github.com/andresz1/testy#readme",
+  "devDependencies": {
+    "@types/jest": "^25.1.3",
+    "jest": "^25.1.0",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^25.2.1",
+    "ts-loader": "^4.4.2",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.2",
+    "webpack": "^4.4.16",
+    "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "murmurhash": "^0.0.2"
+  }
+}
