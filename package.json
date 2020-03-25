@@ -7,7 +7,7 @@
   "types": "dist/types/index.d.ts",
   "author": "Andres Alvarez <a.alvarez.sor@gmail.com>",
   "scripts": {
-    "build:esm": "tsc --module es2015 --outDir dist/esm",
+    "build:esm": "tsc --module es2015 --outDir dist/esm --declarationDir dist/esm/types",
     "build:umd": "webpack",
     "clean": "rimraf dist",
     "build": "npm run clean && npm run build:esm && npm run build:umd",
