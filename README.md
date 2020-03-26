@@ -25,7 +25,7 @@ Install testy
 npm install --save testy
 ```
 
-Import and instantiate it with a datafile. A datafile is `json` that defines the experiments and features avaliable.
+Import and instantiate it with a datafile. A datafile is a `json` that defines the experiments and features avaliable.
 ```js
 import Testy from 'testy';
 
