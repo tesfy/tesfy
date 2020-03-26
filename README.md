@@ -53,9 +53,8 @@ Use testy instance to check which `variationId` is assigned to a given `userId`
 const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
 const experimentId = 'experiment-1';
 
-testy.getVariationId(experimentId, userId);
+testy.getVariationId(experimentId, userId); // '1'
 ```
-const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
 
 ## Feedback
 
