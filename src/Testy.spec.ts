@@ -20,10 +20,8 @@ const datafile = {
 describe("Testy", () => {
   test("that bucketing into a experiment works as expected", () => {
     const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
-    const testy = new Testy(datafile, userId);
+    const testy = new Testy(datafile, null, userId);
 
-    console.log(testy.getVariationId('experiment-1'));
-
-    expect(true).toBeTruthy();
+    expect(testy.getVariationId('experiment-1')).toBe('0');
   });
 });

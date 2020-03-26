@@ -2,7 +2,7 @@ export interface IExperiment {
   id: string,
   percentage: number,
   variations: Array<IVariation>,
-  audience: Object
+  audience?: Object
 };
 
 export interface IVariation {
@@ -14,7 +14,7 @@ export interface IFeature {
   id: string,
   isEnabled: boolean,
   percentage: number,
-  audience: Object
+  audience?: Object
 };
 
 export interface IAllocation {
@@ -63,7 +63,6 @@ class Config {
     return experiment.variations
       .map(({ id, percentage }) => {
         acc += percentage / 100;
-        console.log(acc);
         const rangeEnd = acc * this.computeRangeEnd(experiment.percentage);
 
         return { id, rangeEnd };

@@ -1,9 +1,9 @@
 // @ts-ignore
-import jsonLogic from 'json-logic-js';
+import * as jsonLogic from 'json-logic-js';
 
 class AudienceEvaluator {
-  evaluate(audience: Object, attributes: Object) {
-    return jsonLogic(audience, attributes);
+  evaluate(audience: Object = {}, attributes: Object = {}) {
+    return jsonLogic.apply(audience, attributes);
   }
 }
 
