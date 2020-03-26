@@ -20,9 +20,42 @@ Testy provides a simple but complete solution to develop A/B Tests and Feature F
 
 
 ## Usage
+Install testy
+```js
+npm install --save testy
+```
+
+Import and instantiate it with a datafile. A datafile is `json` that defines the experiments and features avaliable.
 ```js
 import Testy from 'testy';
+
+const datafile = {
+  experiments: {
+    'experiment-1': {
+      id: 'experiment-1',
+      percentage: 90,
+      variations: [{
+        id: '0',
+        percentage: 50
+      }, {
+        id: '1',
+        percentage: 50
+      }]
+    }
+  }
+};
+
+const testy = new Testy(datafile);
 ```
+
+Use testy instance to check which `variationId` is assigned to a given `userId`
+```js
+const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
+const experimentId = 'experiment-1';
+
+testy.getVariationId(experimentId, userId);
+```
+const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
 
 ## Feedback
 
