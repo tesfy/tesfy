@@ -16,6 +16,7 @@ Testy provides a simple but complete solution to develop A/B Tests and Feature F
 - Feature Flags
 - Audience definition using [jsonLogic](http://jsonlogic.com/)
 - Traffic allocation
+- Sticky bucketing
 
 
 ## Usage
