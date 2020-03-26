@@ -37,6 +37,7 @@
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
+    "json-logic-js": "^1.2.2",
     "murmurhash": "^0.0.2"
   }
 }

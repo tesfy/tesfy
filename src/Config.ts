@@ -1,7 +1,8 @@
 export interface IExperiment {
   id: string,
   percentage: number,
-  variations: Array<IVariation>
+  variations: Array<IVariation>,
+  audience: Object
 };
 
 export interface IVariation {
@@ -12,7 +13,8 @@ export interface IVariation {
 export interface IFeature {
   id: string,
   isEnabled: boolean,
-  percentage: number
+  percentage: number,
+  audience: Object
 };
 
 export interface IAllocation {
@@ -24,16 +26,17 @@ export interface IDatafile {
   experiments: { [id: string]: IExperiment },
   features: { [id: string]: IFeature }
 };
-
 class Config {
   private datafile: IDatafile;
+  private maxBuckets: number;
 
-  constructor(datafile: IDatafile) {
+  constructor(datafile: IDatafile, maxBuckets: number) {
     this.datafile = datafile;
+    this.maxBuckets = maxBuckets;
   }
 
   private computeRangeEnd(percentage: number) {
-    return (10000 * percentage) / 100;
+    return (this.maxBuckets * percentage) / 100;
   }
 
   getExperiment(id: string): IExperiment {

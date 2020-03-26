@@ -2,22 +2,26 @@
 import * as murmurhash from "murmurhash";
 import { IAllocation } from './Config';
 
-const HASH_SEED = 1;
-const MAX_HASH_VALUE = Math.pow(2, 32);
-const MAX_TRAFFIC_VALUE = 10000;
-
 class Bucketer {
+  static HASH_SEED = 1;
+  static MAX_HASH_VALUE = Math.pow(2, 32);
+
+  private maxBuckets: number;
+
+  constructor(maxBuckets: number) {
+    this.maxBuckets = maxBuckets;
+  }
+
   private computeBucketId(id: string): number {
     // @ts-ignore
-    const hashValue = murmurhash.v3(id, HASH_SEED);
-    const ratio = hashValue / MAX_HASH_VALUE;
+    const hashValue = murmurhash.v3(id, Bucketer.HASH_SEED);
+    const ratio = hashValue / Bucketer.MAX_HASH_VALUE;
 
-    return Math.floor(ratio * MAX_TRAFFIC_VALUE);
+    return Math.floor(ratio * this.maxBuckets);
   }
 
   bucket(key: string, allocations: Array<IAllocation>): string | null {
     const bucketId = this.computeBucketId(key);
-    console.log('bucketId', bucketId);
     const allocation = allocations
       .find(allocation => bucketId < allocation.rangeEnd);
 

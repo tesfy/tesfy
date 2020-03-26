@@ -1,28 +1,30 @@
 Arguments: 
-  /usr/local/Cellar/node/10.11.0/bin/node /usr/local/Cellar/yarn/1.10.1/libexec/bin/yarn.js test
+  /Users/andres.alvarez/.nvm/versions/node/v10.16.0/bin/node /usr/local/Cellar/yarn/1.10.1/libexec/bin/yarn.js add @types/json-logic-js
 
 PATH: 
-  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+  /Users/andres.alvarez/.nvm/versions/node/v10.16.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 
 Yarn version: 
   1.10.1
 
 Node version: 
-  10.11.0
+  10.16.0
 
 Platform: 
   darwin x64
 
 Trace: 
-  Error: Failed to replace env in config: ${NPM_TOKEN}
-      at /usr/local/Cellar/yarn/1.10.1/libexec/lib/cli.js:88767:13
-      at String.replace (<anonymous>)
-      at envReplace (/usr/local/Cellar/yarn/1.10.1/libexec/lib/cli.js:88762:16)
-      at Function.normalizeConfig (/usr/local/Cellar/yarn/1.10.1/libexec/lib/cli.js:28053:69)
-      at NpmRegistry.<anonymous> (/usr/local/Cellar/yarn/1.10.1/libexec/lib/cli.js:28083:34)
-      at Generator.next (<anonymous>)
-      at step (/usr/local/Cellar/yarn/1.10.1/libexec/lib/cli.js:98:30)
-      at /usr/local/Cellar/yarn/1.10.1/libexec/lib/cli.js:109:13
+  Error: https://registry.yarnpkg.com/@types%2fjson-logic-js: Not found
+      at Request.params.callback [as _callback] (/usr/local/Cellar/yarn/1.10.1/libexec/lib/cli.js:61073:18)
+      at Request.self.callback (/usr/local/Cellar/yarn/1.10.1/libexec/lib/cli.js:120166:22)
+      at Request.emit (events.js:198:13)
+      at Request.<anonymous> (/usr/local/Cellar/yarn/1.10.1/libexec/lib/cli.js:121138:10)
+      at Request.emit (events.js:198:13)
+      at IncomingMessage.<anonymous> (/usr/local/Cellar/yarn/1.10.1/libexec/lib/cli.js:121060:12)
+      at Object.onceWrapper (events.js:286:20)
+      at IncomingMessage.emit (events.js:203:15)
+      at endReadableNT (_stream_readable.js:1129:12)
+      at process._tickCallback (internal/process/next_tick.js:63:19)
 
 npm manifest: 
   {
@@ -64,6 +66,7 @@ npm manifest:
       "webpack-cli": "^3.3.11"
     },
     "dependencies": {
+      "json-logic-js": "^1.2.2",
       "murmurhash": "^0.0.2"
     }
   }
@@ -3051,6 +3054,11 @@ Lockfile:
     version "2.5.2"
     resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-2.5.2.tgz#80564d2e483dacf6e8ef209650a67df3f0c283a4"
     integrity sha512-OYu7XEzjkCQ3C5Ps3QIZsQfNpqoJyZZA99wd9aWd05NCtC5pWOkShK2mkL6HXQR6/Cy2lbNdPlZBpuQHXE63gA==
+  
+  json-logic-js@^1.2.2:
+    version "1.2.2"
+    resolved "https://registry.yarnpkg.com/json-logic-js/-/json-logic-js-1.2.2.tgz#e5c382aa6df25df485edead339869396c533afe8"
+    integrity sha1-5cOCqm3yXfSF7erTOYaTlsUzr+g=
   
   json-parse-better-errors@^1.0.2:
     version "1.0.2"
