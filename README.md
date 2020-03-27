@@ -20,11 +20,14 @@ Testfy provides a simple but complete solution to develop A/B Tests and Feature 
 
 
 ## Usage
-Installation
+
+### Installation
 ```js
 npm install testfy --save
 ```
 
+
+### Initialization
 Import and instantiate it with a datafile. A datafile is a `json` that defines the experiments and features avaliable.
 ```js
 import Testfy from 'testfy';
@@ -48,12 +51,22 @@ const datafile = {
 const testfy = new Testfy(datafile);
 ```
 
+### Experiments
 Use testfy instance to check which `variationId` is assigned to a given `userId`
 ```js
 const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
 const experimentId = 'experiment-1';
 
 testfy.getVariationId(experimentId, userId); // '1'
+```
+
+### Feature Flags
+Use testfy instance to check if a feature is enabled given a `userId`
+```js
+const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
+const featureId = 'feature-1';
+
+testfy.isFeatureEnabled(featureId, userId); // true
 ```
 
 ## Feedback
