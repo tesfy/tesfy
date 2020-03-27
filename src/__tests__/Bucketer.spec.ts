@@ -8,6 +8,10 @@ jest.mock('murmurhash', () => ({
 
 const TOTAL_BUCKETS = 10000;
 
+beforeEach(() => {
+  murmurhash.v3.mockClear();
+});
+
 describe('Config', () => {
   test('should get experiment by id', () => {
     const key = 'key';

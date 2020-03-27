@@ -6,6 +6,10 @@ jest.mock('json-logic-js', () => ({
   apply: jest.fn()
 }));
 
+beforeEach(() => {
+  jsonLogic.apply.mockClear();
+});
+
 describe('Config', () => {
   test('should evaluate audience', () => {
     const key = 'key';
