@@ -20,9 +20,9 @@ Testy provides a simple but complete solution to develop A/B Tests and Feature F
 
 
 ## Usage
-Install testy
+Installation
 ```js
-npm install --save testy
+npm install testy --save
 ```
 
 Import and instantiate it with a datafile. A datafile is a `json` that defines the experiments and features avaliable.
