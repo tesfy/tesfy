@@ -1,5 +1,5 @@
 {
-  "name": "testy",
+  "name": "testfy",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -14,17 +14,17 @@
     "test": "jest"
   },
   "libraryConfig": {
-    "name": "Testy"
+    "name": "Testfy"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andresz1/testy.git"
+    "url": "git+https://github.com/andresz1/testfy.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/andresz1/testy/issues"
+    "url": "https://github.com/andresz1/testfy/issues"
   },
-  "homepage": "https://github.com/andresz1/testy#readme",
+  "homepage": "https://github.com/andresz1/testfy#readme",
   "devDependencies": {
     "@types/jest": "^25.1.3",
     "jest": "^25.1.0",
