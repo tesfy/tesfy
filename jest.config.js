@@ -7,6 +7,6 @@ module.exports = {
     '**/?(*.)+(spec|test).+(ts|js)'
   ],
   transform: {
-    '^.+\\.(ts)$': 'ts-jest'
+    '^.+\\.(ts|json)$': 'ts-jest'
   },
 };

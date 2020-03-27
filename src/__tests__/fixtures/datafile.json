@@ -1,0 +1,55 @@
+{
+  "experiments": {
+    "experiment-1": {
+      "id": "experiment-1",
+      "percentage": 100,
+      "variations": [{
+        "id": "0",
+        "percentage": 30
+      }, {
+        "id": "1",
+        "percentage": 40
+      }]
+    },
+    "experiment-2": {
+      "id": "experiment-2",
+      "percentage": 0,
+      "variations": [{
+        "id": "0",
+        "percentage": 100
+      }]
+    },
+    "experiment-3": {
+      "id": "experiment-3",
+      "percentage": 100,
+      "variations": [{
+        "id": "0",
+        "percentage": 100
+      }],
+      "audience": {
+        "==" : [
+          { "var" : "countryCode" },
+          "us"
+        ]
+      }
+    }
+  },
+  "features": {
+    "feature-1": {
+      "id": "feature-1",
+      "isEnabled": true,
+      "percentage": 50
+    },
+    "feature-2": {
+      "id": "feature-2",
+      "isEnabled": true,
+      "percentage": 100,
+      "audience": {
+        ">" : [
+          { "var" : "price" },
+          50
+        ]
+      }
+    }
+  }
+}

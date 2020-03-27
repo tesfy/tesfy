@@ -1,3 +1,3 @@
-import Testy from './Testy';
+import Testfy from './Testfy';
 
-export default Testy;
+export default Testfy;

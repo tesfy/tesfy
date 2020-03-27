@@ -3,7 +3,7 @@ import AudienceEvaluator from './AudienceEvaluator';
 import Config, { IDatafile } from './Config';
 import StorageInterface from './StorageInterface';
 
-class Testy {
+class Testfy {
   static readonly TOTAL_BUCKETS = 10000;
 
   private userId: string;
@@ -20,8 +20,8 @@ class Testy {
     userId: string = '',
     attributes: Object = {}
   ) {
-    this.config = new Config(datafile, Testy.TOTAL_BUCKETS);
-    this.bucketer = new Bucketer(Testy.TOTAL_BUCKETS);
+    this.config = new Config(datafile, Testfy.TOTAL_BUCKETS);
+    this.bucketer = new Bucketer(Testfy.TOTAL_BUCKETS);
     this.evaluator = new AudienceEvaluator();
     this.storage = storage;
     this.userId = userId;
@@ -83,4 +83,4 @@ class Testy {
   }
 }
 
-export default Testy;
+export default Testfy;

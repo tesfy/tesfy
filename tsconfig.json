@@ -9,6 +9,7 @@
     "declaration": true,
     "allowSyntheticDefaultImports": true,
     "declarationDir": "types",
+    "resolveJsonModule": true,
     "typeRoots": [
       "node_modules/@types"
     ]

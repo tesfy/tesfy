@@ -1,5 +1,5 @@
 // @ts-ignore
-import * as murmurhash from "murmurhash";
+import * as murmurhash from 'murmurhash';
 import { IAllocation } from './Config';
 
 class Bucketer {
