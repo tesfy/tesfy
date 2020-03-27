@@ -9,7 +9,7 @@ jest.mock('murmurhash', () => ({
 const TOTAL_BUCKETS = 10000;
 
 beforeEach(() => {
-  murmurhash.v3.mockClear();
+  murmurhash.v3.mockReset();
 });
 
 describe('Config', () => {

@@ -7,7 +7,7 @@ jest.mock('json-logic-js', () => ({
 }));
 
 beforeEach(() => {
-  jsonLogic.apply.mockClear();
+  jsonLogic.apply.mockReset();
 });
 
 describe('Config', () => {
