@@ -12,7 +12,6 @@ beforeEach(() => {
 
 describe('Config', () => {
   test('should evaluate audience', () => {
-    const key = 'key';
     const evaluator = new AudienceEvaluator();
     const audience = {
       '==' : [

@@ -1,6 +1,6 @@
 // @ts-ignore
 import * as murmurhash from 'murmurhash';
-import { IAllocation } from './Config';
+import { Allocation } from './Config';
 
 class Bucketer {
   static HASH_SEED = 1;
@@ -20,7 +20,7 @@ class Bucketer {
     return Math.floor(ratio * this.maxBuckets);
   }
 
-  bucket(key: string, allocations: Array<IAllocation>): string | null {
+  bucket(key: string, allocations: Array<Allocation>): string | null {
     const bucketId = this.computeBucketId(key);
     const allocation = allocations
       .find(allocation => bucketId < allocation.rangeEnd);

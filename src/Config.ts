@@ -1,55 +1,55 @@
-export interface IExperiment {
-  id: string,
-  percentage: number,
-  variations: Array<IVariation>,
-  audience?: Object
-};
+export interface Experiment {
+  id: string;
+  percentage: number;
+  variations: Array<Variation>;
+  audience?: Record<string, any>;
+}
 
-export interface IVariation {
-  id: string,
-  percentage: number
-};
+export interface Variation {
+  id: string;
+  percentage: number;
+}
 
-export interface IFeature {
-  id: string,
-  percentage: number,
-  audience?: Object
-};
+export interface Feature {
+  id: string;
+  percentage: number;
+  audience?: Record<string, any>;
+}
 
-export interface IAllocation {
-  id: string,
-  rangeEnd: number
-};
+export interface Allocation {
+  id: string;
+  rangeEnd: number;
+}
 
-export interface IDatafile {
-  experiments?: { [id: string]: IExperiment },
-  features?: { [id: string]: IFeature }
-};
+export interface Datafile {
+  experiments?: { [id: string]: Experiment };
+  features?: { [id: string]: Feature };
+}
 
 class Config {
-  private datafile: IDatafile;
+  private datafile: Datafile;
   private maxBuckets: number;
 
-  constructor(datafile: IDatafile, maxBuckets: number) {
+  constructor(datafile: Datafile, maxBuckets: number) {
     this.datafile = datafile;
     this.maxBuckets = maxBuckets;
   }
 
-  private computeRangeEnd(percentage: number) {
+  private computeRangeEnd(percentage: number): number {
     return (this.maxBuckets * percentage) / 100;
   }
 
-  getExperiment(id: string): IExperiment {
+  getExperiment(id: string): Experiment {
     const { experiments = {} } = this.datafile;
     return experiments[id];
   }
 
-  getFeature(id: string) {
+  getFeature(id: string): Feature {
     const { features = {} } = this.datafile;
     return features[id];
   }
 
-  getFeatureAllocation(id: string): IAllocation | undefined {
+  getFeatureAllocation(id: string): Allocation | undefined {
     const feature = this.getFeature(id);
 
     if (!feature) {
@@ -61,7 +61,7 @@ class Config {
     return { id, rangeEnd };
   }
 
-  getExperimentAllocations(id: string): Array<IAllocation> {
+  getExperimentAllocations(id: string): Array<Allocation> {
     const experiment = this.getExperiment(id);
     let acc = 0;
 

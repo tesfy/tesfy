@@ -2,7 +2,7 @@
 import * as jsonLogic from 'json-logic-js';
 
 class AudienceEvaluator {
-  evaluate(audience: Object = {}, attributes: Object = {}) {
+  evaluate(audience: Record<string, any> = {}, attributes: Record<string, any> = {}): boolean {
     return jsonLogic.apply(audience, attributes);
   }
 }

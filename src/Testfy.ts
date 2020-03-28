@@ -1,13 +1,13 @@
 import Bucketer from './Bucketer';
 import AudienceEvaluator from './AudienceEvaluator';
-import Config, { IDatafile } from './Config';
+import Config, { Datafile } from './Config';
 import StorageInterface from './StorageInterface';
 
 class Testfy {
   static readonly TOTAL_BUCKETS = 10000;
 
   private userId: string;
-  private attributes: Object;
+  private attributes: Record<string, any>;
   private config: Config;
   private bucketer: Bucketer;
   private evaluator: AudienceEvaluator;
@@ -15,10 +15,10 @@ class Testfy {
   private cache: { [id: string]: string } = {};
 
   constructor(
-    datafile: IDatafile,
+    datafile: Datafile,
     storage: StorageInterface<string> | null = null,
-    userId: string = '',
-    attributes: Object = {}
+    userId = '',
+    attributes: Record<string, any> = {}
   ) {
     this.config = new Config(datafile, Testfy.TOTAL_BUCKETS);
     this.bucketer = new Bucketer(Testfy.TOTAL_BUCKETS);
@@ -32,23 +32,23 @@ class Testfy {
     return (userId || this.userId).concat(id);
   }
 
-  private getForcedVariation(experimentId: string) {
+  private getForcedVariation(experimentId: string): string | undefined {
     return this.cache[experimentId];
   }
 
-  setUserId(userId: string) {
+  setUserId(userId: string): void {
     this.userId = userId;
   }
 
-  setAttributes(attributes: Object = {}) {
+  setAttributes(attributes: Record<string, any> = {}): void {
     this.attributes = attributes;
   }
 
-  setForcedVariation(experimentId: string, variationId: string) {
+  setForcedVariation(experimentId: string, variationId: string): void {
     this.cache[experimentId] = variationId;
   }
 
-  isFeatureEnabled(featureId: string, userId?: string, attributes?: Object): boolean {
+  isFeatureEnabled(featureId: string, userId?: string, attributes?: Record<string, any>): boolean {
     const key = this.computeKey(featureId, userId);
     const feature = this.config.getFeature(featureId);
 
@@ -59,14 +59,14 @@ class Testfy {
     const { audience } = feature;
     const allocation = this.config.getFeatureAllocation(featureId);
 
-    if (!allocation || !this.evaluator.evaluate(audience, attributes || this.attributes)) {
+    if (!allocation || !this.evaluator.evaluate(audience, attributes || this.attributes)) {
       return false;
     }
 
     return !!this.bucketer.bucket(key, [allocation]);
   }
 
-  getVariationId(experimentId: string, userId?: string, attributes?: Object): string | null {
+  getVariationId(experimentId: string, userId?: string, attributes?: Record<string, any>): string | null {
     let variationId = this.getForcedVariation(experimentId) || this.storage?.get(experimentId);
 
     if (variationId) {
@@ -81,7 +81,7 @@ class Testfy {
 
     const { audience } = experiment;
 
-    if (!this.evaluator.evaluate(audience, attributes || this.attributes)) {
+    if (!this.evaluator.evaluate(audience, attributes || this.attributes)) {
       return null;
     }
 
