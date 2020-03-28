@@ -15,8 +15,8 @@ Testfy provides a simple but complete solution to develop A/B Tests and Feature 
 - Experiments
 - Feature Flags
 - Audience definition using [jsonLogic](http://jsonlogic.com/)
-- Traffic allocation
-- Sticky bucketing
+- Traffic Allocation
+- Sticky Bucketing
 
 
 ## Usage
@@ -25,7 +25,6 @@ Testfy provides a simple but complete solution to develop A/B Tests and Feature 
 ```js
 npm install testfy --save
 ```
-
 
 ### Initialization
 Import and instantiate it with a datafile. A datafile is a `json` that defines the experiments and features avaliable.
@@ -44,6 +43,17 @@ const datafile = {
         id: '1',
         percentage: 50
       }]
+    },
+    'experiment-2': {
+      id: 'experiment-2',
+      percentage: 100,
+      variations: [{
+        id: '0',
+        percentage: 100
+      }],
+      audience: {
+        '==' : [{ var : 'countryCode' }, 'us']
+      }
     }
   }
 };
@@ -52,7 +62,7 @@ const testfy = new Testfy(datafile);
 ```
 
 ### Experiments
-Use testfy instance to check which `variationId` is assigned to a given `userId`
+Check which variation of an experiment is assigned to a user
 ```js
 const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
 const experimentId = 'experiment-1';
@@ -61,12 +71,22 @@ testfy.getVariationId(experimentId, userId); // '1'
 ```
 
 ### Feature Flags
-Use testfy instance to check if a feature is enabled given a `userId`
+Check if a feature is enabled for a user
 ```js
 const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
 const featureId = 'feature-1';
 
 testfy.isFeatureEnabled(featureId, userId); // true
+```
+
+### Audiences
+Use attributes to target an specific audience
+```js
+const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
+const experimentId = 'experiment-2';
+
+testfy.getVariationId(experimentId, userId, { countryCode: 've' }); // null
+testfy.getVariationId(experimentId, userId, { countryCode: 'us' }); // '0'
 ```
 
 ## Feedback
