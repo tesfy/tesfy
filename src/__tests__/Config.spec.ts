@@ -22,13 +22,16 @@ describe('Config', () => {
     const config = new Config(datafile, TOTAL_BUCKETS);
     const allocations = config.getExperimentAllocations('experiment-1');
 
-    expect(allocations).toEqual([{
-      id: '0',
-      rangeEnd: 3000
-    }, {
-      id: '1',
-      rangeEnd: 7000
-    }]);
+    expect(allocations).toEqual([
+      {
+        id: '0',
+        rangeEnd: 3000,
+      },
+      {
+        id: '1',
+        rangeEnd: 7000,
+      },
+    ]);
   });
 
   test('should get feature allocation', () => {
@@ -37,7 +40,7 @@ describe('Config', () => {
 
     expect(allocations).toEqual({
       id: 'feature-1',
-      rangeEnd: 5000
+      rangeEnd: 5000,
     });
   });
 });

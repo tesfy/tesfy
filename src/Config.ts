@@ -65,13 +65,12 @@ class Config {
     const experiment = this.getExperiment(id);
     let acc = 0;
 
-    return experiment.variations
-      .map(({ id, percentage }) => {
-        acc += percentage / 100;
-        const rangeEnd = acc * this.computeRangeEnd(experiment.percentage);
+    return experiment.variations.map(({ id, percentage }) => {
+      acc += percentage / 100;
+      const rangeEnd = acc * this.computeRangeEnd(experiment.percentage);
 
-        return { id, rangeEnd };
-      });
+      return { id, rangeEnd };
+    });
   }
 }
 

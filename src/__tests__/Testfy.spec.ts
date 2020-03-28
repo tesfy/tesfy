@@ -43,15 +43,17 @@ describe('Testfy', () => {
     const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
     const testfy = new Testfy(datafile);
 
-    expect(testfy.getVariationId('experiment-3', userId, {
-      countryCode: 'tr'
-    }))
-      .toBe(null);
+    expect(
+      testfy.getVariationId('experiment-3', userId, {
+        countryCode: 'tr',
+      })
+    ).toBe(null);
 
-    expect(testfy.getVariationId('experiment-3', userId, {
-      countryCode: 'us'
-    }))
-      .toBe('0');
+    expect(
+      testfy.getVariationId('experiment-3', userId, {
+        countryCode: 'us',
+      })
+    ).toBe('0');
   });
 
   test('should set attributes properly', () => {
@@ -61,7 +63,7 @@ describe('Testfy', () => {
     expect(testfy.getVariationId('experiment-3')).toBe(null);
 
     testfy.setAttributes({
-      countryCode: 'us'
+      countryCode: 'us',
     });
 
     expect(testfy.getVariationId('experiment-3')).toBe('0');
@@ -92,11 +94,9 @@ describe('Testfy', () => {
     const userId = '111180e0-8213-4dd6-9189-eb5868e17a86';
     const testfy = new Testfy(datafile, null);
 
-    expect(testfy.isFeatureEnabled('feature-2', userId, { price: 10 }))
-      .toBe(false);
+    expect(testfy.isFeatureEnabled('feature-2', userId, { price: 10 })).toBe(false);
 
-    expect(testfy.isFeatureEnabled('feature-2', userId, { price: 60 }))
-      .toBe(true);
+    expect(testfy.isFeatureEnabled('feature-2', userId, { price: 60 })).toBe(true);
   });
 
   test('should force variation', () => {

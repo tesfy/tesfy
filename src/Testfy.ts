@@ -66,7 +66,11 @@ class Testfy {
     return !!this.bucketer.bucket(key, [allocation]);
   }
 
-  getVariationId(experimentId: string, userId?: string, attributes?: Record<string, any>): string | null {
+  getVariationId(
+    experimentId: string,
+    userId?: string,
+    attributes?: Record<string, any>
+  ): string | null {
     let variationId = this.getForcedVariation(experimentId) || this.storage?.get(experimentId);
 
     if (variationId) {
