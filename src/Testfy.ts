@@ -50,10 +50,16 @@ class Testfy {
 
   isFeatureEnabled(featureId: string, userId?: string, attributes?: Object): boolean {
     const key = this.computeKey(featureId, userId);
-    const { audience } = this.config.getFeature(featureId);
+    const feature = this.config.getFeature(featureId);
+
+    if (!feature) {
+      return false;
+    }
+
+    const { audience } = feature;
     const allocation = this.config.getFeatureAllocation(featureId);
 
-    if (!this.evaluator.evaluate(audience, attributes || this.attributes)) {
+    if (!allocation || !this.evaluator.evaluate(audience, attributes || this.attributes)) {
       return false;
     }
 
@@ -67,7 +73,13 @@ class Testfy {
       return variationId;
     }
 
-    const { audience } = this.config.getExperiment(experimentId);
+    const experiment = this.config.getExperiment(experimentId);
+
+    if (!experiment) {
+      return null;
+    }
+
+    const { audience } = experiment;
 
     if (!this.evaluator.evaluate(audience, attributes || this.attributes)) {
       return null;

@@ -16,6 +16,13 @@ describe('Testfy', () => {
     expect(testfy.getVariationId('experiment-1')).toBe(null);
   });
 
+  test('should bucket experiment outside a variation if not defined', () => {
+    const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
+    const testfy = new Testfy(datafile, null, userId);
+
+    expect(testfy.getVariationId('experiment-x')).toBe(null);
+  });
+
   test('should set user id properly', () => {
     const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
     const testfy = new Testfy(datafile, null, userId);
@@ -72,6 +79,13 @@ describe('Testfy', () => {
     const testfy = new Testfy(datafile, null, userId);
 
     expect(testfy.isFeatureEnabled('feature-1')).toBe(false);
+  });
+
+  test('should disabled feature if not defined', () => {
+    const userId = '111180e0-7793-44d6-9189-eb5868e17a86';
+    const testfy = new Testfy(datafile, null, userId);
+
+    expect(testfy.isFeatureEnabled('feature-x')).toBe(false);
   });
 
   test('should match audience before bucketing feature', () => {

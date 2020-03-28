@@ -12,7 +12,6 @@ export interface IVariation {
 
 export interface IFeature {
   id: string,
-  isEnabled: boolean,
   percentage: number,
   audience?: Object
 };
@@ -23,8 +22,8 @@ export interface IAllocation {
 };
 
 export interface IDatafile {
-  experiments: { [id: string]: IExperiment },
-  features: { [id: string]: IFeature }
+  experiments?: { [id: string]: IExperiment },
+  features?: { [id: string]: IFeature }
 };
 class Config {
   private datafile: IDatafile;
@@ -40,17 +39,22 @@ class Config {
   }
 
   getExperiment(id: string): IExperiment {
-    const { experiments } = this.datafile;
+    const { experiments = {} } = this.datafile;
     return experiments[id];
   }
 
   getFeature(id: string) {
-    const { features } = this.datafile;
+    const { features = {} } = this.datafile;
     return features[id];
   }
 
-  getFeatureAllocation(id: string): IAllocation {
+  getFeatureAllocation(id: string): IAllocation | undefined {
     const feature = this.getFeature(id);
+
+    if (!feature) {
+      return;
+    }
+
     const rangeEnd = this.computeRangeEnd(feature.percentage);
 
     return { id, rangeEnd };
