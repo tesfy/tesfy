@@ -55,6 +55,12 @@ const datafile = {
         '==' : [{ var : 'countryCode' }, 'us']
       }
     }
+  },
+  features: {
+    'feature-1': {
+      id: 'feature-1',
+      percentage: 50
+    }
   }
 };
 
