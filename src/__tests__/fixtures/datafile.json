@@ -37,12 +37,10 @@
   "features": {
     "feature-1": {
       "id": "feature-1",
-      "isEnabled": true,
       "percentage": 50
     },
     "feature-2": {
       "id": "feature-2",
-      "isEnabled": true,
       "percentage": 100,
       "audience": {
         ">" : [
