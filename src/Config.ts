@@ -25,6 +25,7 @@ export interface IDatafile {
   experiments?: { [id: string]: IExperiment },
   features?: { [id: string]: IFeature }
 };
+
 class Config {
   private datafile: IDatafile;
   private maxBuckets: number;
