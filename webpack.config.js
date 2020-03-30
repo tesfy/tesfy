@@ -17,7 +17,16 @@ const config = {
   module: {
     rules: [
       { test: /\.json$/, loader: 'json-loader' },
-      { test: /\.ts$/, loader: 'ts-loader', exclude: /node_modules/ },
+      {
+        test: /\.ts$/,
+        loader: 'ts-loader',
+        options: {
+          compilerOptions: {
+            declarationDir: 'types',
+          },
+        },
+        exclude: /node_modules/
+      },
     ]
   }
 }
