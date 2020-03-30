@@ -1,7 +1,7 @@
 import Bucketer from './Bucketer';
 import AudienceEvaluator from './AudienceEvaluator';
 import Config, { Datafile } from './Config';
-import StorageInterface from './StorageInterface';
+import Storage from './Storage';
 
 class Testfy {
   static readonly TOTAL_BUCKETS = 10000;
@@ -11,12 +11,12 @@ class Testfy {
   private config: Config;
   private bucketer: Bucketer;
   private evaluator: AudienceEvaluator;
-  private storage: StorageInterface<string> | null;
+  private storage: Storage<string> | null;
   private cache: { [id: string]: string } = {};
 
   constructor(
     datafile: Datafile,
-    storage: StorageInterface<string> | null = null,
+    storage: Storage<string> | null = null,
     userId = '',
     attributes: Record<string, any> = {}
   ) {
