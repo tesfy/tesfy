@@ -22,13 +22,14 @@ Testfy provides a simple but complete solution to develop A/B Tests and Feature 
 ## Usage
 
 ### Installation
-```js
+```ts
 npm install testfy --save
 ```
 
 ### Initialization
 Import and instantiate it with a datafile. A datafile is a `json` that defines the experiments and features avaliable.
-```js
+
+```ts
 import Testfy from 'testfy';
 
 const datafile = {
@@ -68,7 +69,8 @@ const testfy = new Testfy(datafile);
 ```
 
 ### Experiments
-Check which variation of an experiment is assigned to a user
+Check which variation of an experiment is assigned to a user.
+
 ```js
 const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
 const experimentId = 'experiment-1';
@@ -77,8 +79,9 @@ testfy.getVariationId(experimentId, userId); // '1'
 ```
 
 ### Feature Flags
-Check if a feature is enabled for a user
-```js
+Check if a feature is enabled for a user.
+
+```ts
 const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
 const featureId = 'feature-1';
 
@@ -86,13 +89,33 @@ testfy.isFeatureEnabled(featureId, userId); // true
 ```
 
 ### Audiences
-Use attributes to target an specific audience
-```js
+Use attributes to target an specific audience.
+
+```ts
 const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
 const experimentId = 'experiment-2';
 
 testfy.getVariationId(experimentId, userId, { countryCode: 've' }); // null
 testfy.getVariationId(experimentId, userId, { countryCode: 'us' }); // '0'
+```
+
+### Sticky Bucketing
+Optionally add a storage layer when instantiating testfy. This layer could be whatever you want (memory cache, [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) among others). This way even allocation or attributes change users will stick with same variation.
+
+```ts
+const testfy = new Testfy(datafile, {
+  get: (experimentId: string) => {
+    return storage.get(experimentId);
+  },
+  store: (experimentId: string, variationId: string) => {
+    returb storage.save(experimentId, variationId);
+  }
+});
+const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
+const experimentId = 'experiment-2';
+
+testfy.getVariationId(experimentId, userId, { countryCode: 'us' }); // '0'
+testfy.getVariationId(experimentId, userId, { countryCode: 've' }); // '0'
 ```
 
 ## Feedback
