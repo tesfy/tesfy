@@ -1,11 +1,18 @@
 {
   "name": "testfy",
   "version": "1.0.0",
-  "description": "",
+  "author": "Andres Alvarez <a.alvarez.sor@gmail.com>",
+  "description": "A lightweight A/B Testing and Feature Flag JavaScript library focused on performance",
+  "keywords": [
+    "A/B Testing",
+    "Feature Flags",
+    "Experiment",
+    "TypeScript",
+    "JavaScript"
+  ],
   "main": "dist/index.js",
   "module": "dist/esm/index.js",
   "types": "dist/types/index.d.ts",
-  "author": "Andres Alvarez <a.alvarez.sor@gmail.com>",
   "scripts": {
     "build:esm": "tsc --module es2015 --outDir dist/esm --declaration false",
     "build:umd": "webpack",
