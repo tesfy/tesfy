@@ -54,7 +54,9 @@
     "webpack-cli": "^3.3.11"
   },
   "dependencies": {
+    "@types/lodash": "^4.14.149",
     "json-logic-js": "^1.2.2",
+    "lodash": "^4.17.15",
     "murmurhash": "^0.0.2"
   }
 }
