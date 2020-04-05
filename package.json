@@ -20,7 +20,8 @@
     "build": "yarn clean && yarn build:esm && yarn build:umd",
     "test": "jest",
     "lint": "yarn eslint . --ext .ts",
-    "size": "yarn build && size-limit"
+    "size-build": "yarn build",
+    "size": "yarn size-build && size-limit"
   },
   "libraryConfig": {
     "name": "Testfy"
