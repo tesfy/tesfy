@@ -1,4 +1,4 @@
-import Testfy from '../Testfy';
+import Testfy from '../src/Testfy';
 import * as datafile from './fixtures/datafile.json';
 
 describe('Testfy', () => {
@@ -45,13 +45,13 @@ describe('Testfy', () => {
 
     expect(
       testfy.getVariationId('experiment-3', userId, {
-        countryCode: 'tr',
+        countryCode: 'tr'
       })
     ).toBe(null);
 
     expect(
       testfy.getVariationId('experiment-3', userId, {
-        countryCode: 'us',
+        countryCode: 'us'
       })
     ).toBe('0');
   });
@@ -63,7 +63,7 @@ describe('Testfy', () => {
     expect(testfy.getVariationId('experiment-3')).toBe(null);
 
     testfy.setAttributes({
-      countryCode: 'us',
+      countryCode: 'us'
     });
 
     expect(testfy.getVariationId('experiment-3')).toBe('0');

@@ -1,9 +1,9 @@
 // @ts-ignore
 import * as jsonLogic from 'json-logic-js';
-import AudienceEvaluator from '../AudienceEvaluator';
+import AudienceEvaluator from '../src/AudienceEvaluator';
 
 jest.mock('json-logic-js', () => ({
-  apply: jest.fn(),
+  apply: jest.fn()
 }));
 
 beforeEach(() => {
@@ -14,7 +14,7 @@ describe('Config', () => {
   test('should evaluate audience', () => {
     const evaluator = new AudienceEvaluator();
     const audience = {
-      '==': [{ var: 'countryCode' }, 'us'],
+      '==': [{ var: 'countryCode' }, 'us']
     };
     const attributes = { countryCode: 'us' };
 

@@ -1,10 +1,14 @@
 [
   {
-    "path": "dist/index.js",
-    "limit": "10 KB"
+    "path": "dist/testfy.umd.production.min.js",
+    "limit": "6 KB"
   },
   {
-    "path": "dist/esm/index.js",
-    "limit": "10 KB"
+    "path": "dist/testfy.cjs.production.min.js",
+    "limit": "5 KB"
+  },
+  {
+    "path": "dist/testfy.esm.js",
+    "limit": "5 KB"
   }
 ]
