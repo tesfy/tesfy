@@ -1,3 +1,18 @@
-import Testfy from './Testfy';
+import AudienceEvaluator from './AudienceEvaluator';
+import Bucketer from './Bucketer';
+import Config, { Experiment, Variation, Feature, Allocation, Datafile } from './Config';
+import Storage from './Storage';
+import Engine from './Engine';
 
-export default Testfy;
+export {
+  AudienceEvaluator,
+  Bucketer,
+  Engine,
+  Experiment,
+  Variation,
+  Feature,
+  Allocation,
+  Datafile,
+  Storage,
+  Config
+};

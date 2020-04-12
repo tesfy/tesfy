@@ -1,31 +1,32 @@
-import Testfy from '../src/Testfy';
+import Engine from '../src/Engine';
+// @ts-ignore
 import * as datafile from './fixtures/datafile.json';
 
-describe('Testfy', () => {
+describe('Engine', () => {
   test('should bucket experiment into a variation', () => {
     const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
-    const testfy = new Testfy(datafile, null, userId);
+    const testfy = new Engine(datafile, null, userId);
 
     expect(testfy.getVariationId('experiment-1')).toBe('0');
   });
 
   test('should bucket experiment outside a variation', () => {
     const userId = '111180e0-7793-44d6-9189-eb5868e17a86';
-    const testfy = new Testfy(datafile, null, userId);
+    const testfy = new Engine(datafile, null, userId);
 
     expect(testfy.getVariationId('experiment-1')).toBe(null);
   });
 
   test('should bucket experiment outside a variation if not defined', () => {
     const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
-    const testfy = new Testfy(datafile, null, userId);
+    const testfy = new Engine(datafile, null, userId);
 
     expect(testfy.getVariationId('experiment-x')).toBe(null);
   });
 
   test('should set user id properly', () => {
     const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
-    const testfy = new Testfy(datafile, null, userId);
+    const testfy = new Engine(datafile, null, userId);
 
     testfy.setUserId('111180e0-7793-44d6-9189-eb5868e17a86');
 
@@ -34,14 +35,14 @@ describe('Testfy', () => {
 
   test('should not allocate experiment inside variation', () => {
     const userId = '111180e0-7793-44d6-9189-eb5868e17a86';
-    const testfy = new Testfy(datafile, null, userId);
+    const testfy = new Engine(datafile, null, userId);
 
     expect(testfy.getVariationId('experiment-2')).toBe(null);
   });
 
   test('should match audience before bucketing experiment', () => {
     const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
-    const testfy = new Testfy(datafile);
+    const testfy = new Engine(datafile);
 
     expect(
       testfy.getVariationId('experiment-3', userId, {
@@ -58,7 +59,7 @@ describe('Testfy', () => {
 
   test('should set attributes properly', () => {
     const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
-    const testfy = new Testfy(datafile, null, userId, {});
+    const testfy = new Engine(datafile, null, userId, {});
 
     expect(testfy.getVariationId('experiment-3')).toBe(null);
 
@@ -71,28 +72,28 @@ describe('Testfy', () => {
 
   test('should bucket enabled feature', () => {
     const userId = '111180e0-8213-4dd6-9189-eb5868e17a86';
-    const testfy = new Testfy(datafile, null, userId);
+    const testfy = new Engine(datafile, null, userId);
 
     expect(testfy.isFeatureEnabled('feature-1')).toBe(true);
   });
 
   test('should bucket disabled feature', () => {
     const userId = '111180e0-7793-44d6-9189-eb5868e17a86';
-    const testfy = new Testfy(datafile, null, userId);
+    const testfy = new Engine(datafile, null, userId);
 
     expect(testfy.isFeatureEnabled('feature-1')).toBe(false);
   });
 
   test('should disabled feature if not defined', () => {
     const userId = '111180e0-7793-44d6-9189-eb5868e17a86';
-    const testfy = new Testfy(datafile, null, userId);
+    const testfy = new Engine(datafile, null, userId);
 
     expect(testfy.isFeatureEnabled('feature-x')).toBe(false);
   });
 
   test('should match audience before bucketing feature', () => {
     const userId = '111180e0-8213-4dd6-9189-eb5868e17a86';
-    const testfy = new Testfy(datafile, null);
+    const testfy = new Engine(datafile, null);
 
     expect(testfy.isFeatureEnabled('feature-2', userId, { price: 10 })).toBe(false);
 
@@ -101,7 +102,7 @@ describe('Testfy', () => {
 
   test('should force variation', () => {
     const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
-    const testfy = new Testfy(datafile, null, userId);
+    const testfy = new Engine(datafile, null, userId);
 
     testfy.setForcedVariation('experiment-1', '1');
     expect(testfy.getVariationId('experiment-1')).toBe('1');
