@@ -7,8 +7,9 @@
 </p>
 
 <p align="center">
-  <img alt="license" src="https://img.shields.io/badge/license-MIT-blue.svg">
-  <img alt="tests status" src="https://github.com/andresz1/testfy/workflows/main/badge.svg">
+  <img alt="license badge" src="https://img.shields.io/badge/license-MIT-blue.svg">
+  <img alt="tests badge" src="https://github.com/andresz1/testfy/workflows/main/badge.svg">
+  <img alt="size badge" src="https://badgen.net/bundlephobia/minzip/testfy">
 </p>
 
 Testfy provides a simple but complete solution to develop A/B Tests and Feature Flags on both server and client side without relying in any storage layer. The main features of this library are:
