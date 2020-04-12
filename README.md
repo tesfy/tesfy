@@ -1,10 +1,11 @@
-<h1 align="center">
-  testfy 🆎
-</h1>
+<p align="center">
+  <img alt="logo" src="/assets/logo.png" width="220">
+</p>
 
 <p align="center">
   A lightweight A/B Testing and Feature Flag JavaScript library focused on performance ⚡️
 </p>
+
 <p align="center">
   <img alt="license" src="https://img.shields.io/badge/license-MIT-blue.svg">
   <img alt="tests status" src="https://github.com/andresz1/testfy/workflows/main/badge.svg">
@@ -30,7 +31,7 @@ npm install testfy --save
 Import and instantiate it with a datafile. A datafile is a `json` that defines the experiments and features avaliable. Ideally this file should be hosted somewhere outside your application (for example in [S3](https://aws.amazon.com/s3/)), so it could be fetched during boostrap or every certain time. This will allow you to make changes to the file without deploying the application.
 
 ```ts
-import Testfy from 'testfy';
+import * as Testfy from 'testfy';
 
 const datafile = {
   experiments: {
@@ -65,7 +66,7 @@ const datafile = {
   }
 };
 
-const testfy = new Testfy(datafile);
+const testfy = new Testfy.Engine(datafile);
 ```
 
 ### Experiments
@@ -103,7 +104,7 @@ testfy.getVariationId(experimentId, userId, { countryCode: 'us' }); // '0'
 Optionally add a storage layer when instantiating testfy. This layer could be whatever you want (memory cache, [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) among others). This way even allocation or attributes change users will stick with same variation.
 
 ```ts
-const testfy = new Testfy(datafile, {
+const testfy = new Testfy.Engine(datafile, {
   get: (experimentId: string) => {
     return storage.get(experimentId);
   },
