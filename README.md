@@ -24,7 +24,7 @@ Testfy provides a simple but complete solution to develop A/B Tests and Feature 
 ## Usage
 
 ### Installation
-```ts
+```sh
 npm install testfy --save
 ```
 
@@ -73,7 +73,7 @@ const testfy = new Testfy.Engine(datafile);
 ### Experiments
 Check which variation of an experiment is assigned to a user.
 
-```js
+```ts
 const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
 const experimentId = 'experiment-1';
 
