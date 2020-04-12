@@ -120,6 +120,11 @@ testfy.getVariationId(experimentId, userId, { countryCode: 'us' }); // '0'
 testfy.getVariationId(experimentId, userId, { countryCode: 've' }); // '0'
 ```
 
+## Integrations
+
+Testfy could be integrated with several JavaScript frameworks or libraries to provide a better API to use alongside those.
+- [react-testfy](https://github.com/andresz1/react-testfy)
+
 ## Feedback
 
 Pull requests, feature ideas and bug reports are very welcome. We highly appreciate any feedback.
