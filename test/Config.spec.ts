@@ -1,4 +1,4 @@
-import Config from '../Config';
+import Config from '../src/Config';
 import * as datafile from './fixtures/datafile.json';
 
 const TOTAL_BUCKETS = 10000;
@@ -25,12 +25,12 @@ describe('Config', () => {
     expect(allocations).toEqual([
       {
         id: '0',
-        rangeEnd: 3000,
+        rangeEnd: 3000
       },
       {
         id: '1',
-        rangeEnd: 7000,
-      },
+        rangeEnd: 7000
+      }
     ]);
   });
 
@@ -40,7 +40,7 @@ describe('Config', () => {
 
     expect(allocations).toEqual({
       id: 'feature-1',
-      rangeEnd: 5000,
+      rangeEnd: 5000
     });
   });
 });

@@ -1,5 +1,5 @@
 {
-  "name": "testfy",
+  "name": "tesfy",
   "version": "1.0.0",
   "author": "Andres Alvarez <a.alvarez.sor@gmail.com>",
   "description": "A lightweight A/B Testing and Feature Flag JavaScript library focused on performance",
@@ -11,49 +11,51 @@
     "JavaScript"
   ],
   "main": "dist/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
-  "scripts": {
-    "build:esm": "tsc --module es2015 --outDir dist/esm --declaration false",
-    "build:umd": "webpack",
-    "clean": "rimraf dist",
-    "build": "yarn clean && yarn build:esm && yarn build:umd",
-    "test": "jest",
-    "lint": "yarn eslint . --ext .ts",
-    "size-build": "yarn build",
-    "size": "yarn size-build && size-limit"
+  "module": "dist/tesfy.esm.js",
+  "unpkg": "dist/tesfy.umd.production.min.js",
+  "jsdelivr": "dist/tesfy.umd.production.min.js",
+  "react-native": "dist/tesfy.esm.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
   },
-  "libraryConfig": {
-    "name": "Testfy"
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build --name Tesfy --format cjs,esm,umd",
+    "test": "tsdx test",
+    "lint": "tsdx lint",
+    "prepare": "npm run build",
+    "postversion": "git push && git push --tags",
+    "size-build": "npm run build",
+    "size": "npm run size-build && size-limit"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andresz1/testfy.git"
+    "url": "git+https://github.com/andresz1/tesfy.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/andresz1/testfy/issues"
+    "url": "https://github.com/andresz1/tesfy/issues"
   },
-  "homepage": "https://github.com/andresz1/testfy#readme",
+  "homepage": "https://github.com/andresz1/tesfy#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "peerDependencies": {},
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^4.4.2",
-    "@types/jest": "^25.1.3",
-    "@types/lodash": "^4.14.149",
-    "@typescript-eslint/eslint-plugin": "^2.25.0",
-    "@typescript-eslint/parser": "^2.25.0",
-    "eslint": "^6.8.0",
-    "eslint-config-prettier": "^6.10.1",
-    "eslint-plugin-prettier": "^3.1.2",
-    "jest": "^25.1.0",
-    "prettier": "^2.0.2",
-    "rimraf": "^2.6.2",
-    "size-limit": "^4.4.2",
-    "ts-jest": "^25.2.1",
-    "ts-loader": "^4.4.2",
-    "ts-node": "^8.6.2",
-    "typescript": "^3.8.2",
-    "webpack": "^4.4.16",
-    "webpack-cli": "^3.3.11"
+    "@size-limit/preset-small-lib": "^4.4.5",
+    "@types/jest": "^25.2.1",
+    "husky": "^4.2.5",
+    "size-limit": "^4.4.5",
+    "tsdx": "^0.13.1",
+    "tslib": "^1.11.1",
+    "typescript": "^3.8.3"
   },
   "dependencies": {
     "json-logic-js": "^1.2.2",

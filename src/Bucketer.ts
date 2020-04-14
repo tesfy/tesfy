@@ -24,7 +24,7 @@ class Bucketer {
 
   bucket(key: string, allocations: Array<Allocation>): string | null {
     const bucketId = this.computeBucketId(key);
-    const allocation = allocations.find((allocation) => bucketId < allocation.rangeEnd);
+    const allocation = allocations.find(allocation => bucketId < allocation.rangeEnd);
 
     if (allocation) {
       return allocation.id;
