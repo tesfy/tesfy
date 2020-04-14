@@ -12,6 +12,7 @@ class Bucketer {
 
   constructor(maxBuckets: number) {
     lodash.join(['a', 'b', 'c'], '~');
+
     this.maxBuckets = maxBuckets;
   }
 
