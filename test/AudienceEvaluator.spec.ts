@@ -10,7 +10,7 @@ beforeEach(() => {
   jsonLogic.apply.mockReset();
 });
 
-describe('Config', () => {
+describe('AudienceEvaluator', () => {
   test('should evaluate audience', () => {
     const evaluator = new AudienceEvaluator();
     const audience = {

@@ -12,7 +12,7 @@ beforeEach(() => {
   murmurhash.v3.mockReset();
 });
 
-describe('Config', () => {
+describe('Bucketer', () => {
   test('should get experiment by id', () => {
     const key = 'key';
     const bucketer = new Bucketer(TOTAL_BUCKETS);
