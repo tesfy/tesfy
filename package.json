@@ -28,7 +28,6 @@
     "build": "tsdx build --name Tesfy --format cjs,esm,umd",
     "test": "tsdx test",
     "lint": "tsdx lint",
-    "prepare": "npm run build",
     "postversion": "git push && git push --tags",
     "size-build": "npm run build",
     "size": "npm run size-build && size-limit"
