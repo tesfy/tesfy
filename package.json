@@ -1,6 +1,6 @@
 {
-  "name": "testfy",
-  "version": "1.1.0",
+  "name": "tesfy",
+  "version": "1.0.0",
   "author": "Andres Alvarez <a.alvarez.sor@gmail.com>",
   "description": "A lightweight A/B Testing and Feature Flag JavaScript library focused on performance",
   "keywords": [
@@ -11,10 +11,10 @@
     "JavaScript"
   ],
   "main": "dist/index.js",
-  "module": "dist/testfy.esm.js",
-  "unpkg": "dist/testfy.umd.production.min.js",
-  "jsdelivr": "dist/testfy.umd.production.min.js",
-  "react-native": "dist/testfy.esm.js",
+  "module": "dist/tesfy.esm.js",
+  "unpkg": "dist/tesfy.umd.production.min.js",
+  "jsdelivr": "dist/tesfy.umd.production.min.js",
+  "react-native": "dist/tesfy.esm.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist",
@@ -25,7 +25,7 @@
   },
   "scripts": {
     "start": "tsdx watch",
-    "build": "tsdx build --name Testfy --format cjs,esm,umd",
+    "build": "tsdx build --name Tesfy --format cjs,esm,umd",
     "test": "tsdx test",
     "lint": "tsdx lint",
     "prepare": "npm run build",
@@ -35,13 +35,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/andresz1/testfy.git"
+    "url": "git+https://github.com/andresz1/tesfy.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/andresz1/testfy/issues"
+    "url": "https://github.com/andresz1/tesfy/issues"
   },
-  "homepage": "https://github.com/andresz1/testfy#readme",
+  "homepage": "https://github.com/andresz1/tesfy#readme",
   "husky": {
     "hooks": {
       "pre-commit": "tsdx lint"
