@@ -1,5 +1,5 @@
 <p align="center">
-  <img alt="logo" src="/assets/logo.png" width="220">
+  <img alt="logo" src="https://tesfy.s3.us-west-2.amazonaws.com/images/logo.png" width="220">
 </p>
 
 <p align="center">
