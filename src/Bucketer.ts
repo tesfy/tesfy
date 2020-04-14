@@ -1,5 +1,6 @@
 // @ts-ignore
 import * as murmurhash from 'murmurhash';
+// @ts-ignore
 import * as lodash from 'lodash';
 import { Allocation } from './Config';
 
