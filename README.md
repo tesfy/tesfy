@@ -110,7 +110,7 @@ const tesfy = new Tesfy.Engine(datafile, {
     return storage.get(experimentId);
   },
   store: (experimentId: string, variationId: string) => {
-    returb storage.save(experimentId, variationId);
+    return storage.save(experimentId, variationId);
   }
 });
 const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
