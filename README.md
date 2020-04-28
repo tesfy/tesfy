@@ -10,6 +10,9 @@
   <img alt="license badge" src="https://img.shields.io/badge/license-MIT-blue.svg">
   <img alt="tests badge" src="https://github.com/andresz1/tesfy/workflows/main/badge.svg">
   <img alt="size badge" src="https://badgen.net/bundlephobia/minzip/tesfy">
+  <a href="https://discord.gg/QxEcWYc">
+  <image alt="discord chat" src="https://img.shields.io/discord/704771560782692474?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2">
+    </a>
 </p>
 
 Tesfy provides a simple but complete solution to develop A/B Tests and Feature Flags on both server and client side without relying in any storage layer. The main features of this library are:
