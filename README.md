@@ -67,7 +67,7 @@ const datafile = {
   }
 };
 
-const tesfy = new Tesfy.Engine(datafile);
+const tesfy = new Tesfy.Engine({ datafile });
 ```
 
 ### Experiments
@@ -105,12 +105,15 @@ tesfy.getVariationId(experimentId, userId, { countryCode: 'us' }); // '0'
 Optionally add a storage layer when instantiating tesfy. This layer could be whatever you want (memory cache, [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) among others). This way even allocation or attributes change users will stick with same variation.
 
 ```ts
-const tesfy = new Tesfy.Engine(datafile, {
-  get: (experimentId: string) => {
-    return storage.get(experimentId);
-  },
-  store: (experimentId: string, variationId: string) => {
-    return storage.save(experimentId, variationId);
+const tesfy = new Tesfy.Engine({
+  datafile,
+  storage: {
+    get: (experimentId: string) => {
+      return storage.get(experimentId);
+    },
+    store: (experimentId: string, variationId: string) => {
+      return storage.save(experimentId, variationId);
+    }
   }
 });
 const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
