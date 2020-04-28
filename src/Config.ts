@@ -39,13 +39,23 @@ class Config {
     return (this.maxBuckets * percentage) / 100;
   }
 
-  getExperiment(id: string): Experiment {
+  getExperiments(): { [id: string]: Experiment } {
     const { experiments = {} } = this.datafile;
+    return experiments;
+  }
+
+  getExperiment(id: string): Experiment {
+    const experiments = this.getExperiments();
     return experiments[id];
   }
 
-  getFeature(id: string): Feature {
+  getFeatures(): { [id: string]: Feature } {
     const { features = {} } = this.datafile;
+    return features;
+  }
+
+  getFeature(id: string): Feature {
+    const features = this.getFeatures();
     return features[id];
   }
 

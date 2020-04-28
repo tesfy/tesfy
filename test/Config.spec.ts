@@ -4,11 +4,25 @@ import * as datafile from './fixtures/datafile.json';
 const TOTAL_BUCKETS = 10000;
 
 describe('Config', () => {
+  test('should get experiments', () => {
+    const config = new Config(datafile, TOTAL_BUCKETS);
+    const experiments = config.getExperiments();
+
+    expect(datafile.experiments).toBe(experiments);
+  });
+
   test('should get experiment by id', () => {
     const config = new Config(datafile, TOTAL_BUCKETS);
     const experiment = config.getExperiment('experiment-1');
 
     expect('experiment-1').toBe(experiment.id);
+  });
+
+  test('should get features', () => {
+    const config = new Config(datafile, TOTAL_BUCKETS);
+    const features = config.getFeatures();
+
+    expect(datafile.features).toBe(features);
   });
 
   test('should get feature by id', () => {
