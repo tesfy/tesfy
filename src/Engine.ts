@@ -53,20 +53,6 @@ class Engine {
     this.cache[experimentId] = variationId;
   }
 
-  getEnabledFeatures(
-    userId?: string,
-    attributes?: Record<string, any>
-  ): { [featureId: string]: boolean } {
-    const features = this.config.getFeatures();
-
-    return Object.keys(features).reduce((features, featureId) => {
-      return {
-        ...features,
-        [featureId]: this.isFeatureEnabled(featureId, userId, attributes)
-      };
-    }, {});
-  }
-
   isFeatureEnabled(featureId: string, userId?: string, attributes?: Record<string, any>): boolean {
     const key = this.computeKey(featureId, userId);
     const feature = this.config.getFeature(featureId);
@@ -85,16 +71,16 @@ class Engine {
     return !!this.bucketer.bucket(key, [allocation]);
   }
 
-  getVariationsIds(
+  getEnabledFeatures(
     userId?: string,
     attributes?: Record<string, any>
-  ): { [experimentId: string]: string } {
-    const experiments = this.config.getExperiments();
+  ): { [featureId: string]: boolean } {
+    const features = this.config.getFeatures();
 
-    return Object.keys(experiments).reduce((experiments, experimentId) => {
+    return Object.keys(features).reduce((features, featureId) => {
       return {
-        ...experiments,
-        [experimentId]: this.getVariationId(experimentId, userId, attributes)
+        ...features,
+        [featureId]: this.isFeatureEnabled(featureId, userId, attributes)
       };
     }, {});
   }
@@ -129,6 +115,20 @@ class Engine {
     this.storage?.store(experimentId, variationId);
 
     return variationId;
+  }
+
+  getVariationIds(
+    userId?: string,
+    attributes?: Record<string, any>
+  ): { [experimentId: string]: string } {
+    const experiments = this.config.getExperiments();
+
+    return Object.keys(experiments).reduce((experiments, experimentId) => {
+      return {
+        ...experiments,
+        [experimentId]: this.getVariationId(experimentId, userId, attributes)
+      };
+    }, {});
   }
 }
 

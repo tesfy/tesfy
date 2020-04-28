@@ -28,7 +28,7 @@ describe('Engine', () => {
     const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
     const engine = new Engine({ datafile, userId });
 
-    expect(engine.getVariationsIds()).toEqual({
+    expect(engine.getVariationIds()).toEqual({
       'experiment-1': '0',
       'experiment-2': null,
       'experiment-3': null
