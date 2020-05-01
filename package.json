@@ -29,8 +29,7 @@
     "test": "tsdx test",
     "lint": "tsdx lint",
     "postversion": "git push && git push --tags",
-    "size-build": "npm run build",
-    "size": "npm run size-build && size-limit"
+    "size": "npm run build && size-limit"
   },
   "repository": {
     "type": "git",
