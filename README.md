@@ -10,6 +10,9 @@
   <img alt="license badge" src="https://img.shields.io/badge/license-MIT-blue.svg">
   <img alt="tests badge" src="https://github.com/andresz1/tesfy/workflows/main/badge.svg">
   <img alt="size badge" src="https://badgen.net/bundlephobia/minzip/tesfy">
+  <a href="https://discord.gg/QxEcWYc">
+  <image alt="discord chat" src="https://img.shields.io/discord/704771560782692474?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2">
+    </a>
 </p>
 
 Tesfy provides a simple but complete solution to develop A/B Tests and Feature Flags on both server and client side without relying in any storage layer. The main features of this library are:
@@ -67,7 +70,7 @@ const datafile = {
   }
 };
 
-const tesfy = new Tesfy.Engine(datafile);
+const tesfy = new Tesfy.Engine({ datafile });
 ```
 
 ### Experiments
@@ -105,12 +108,15 @@ tesfy.getVariationId(experimentId, userId, { countryCode: 'us' }); // '0'
 Optionally add a storage layer when instantiating tesfy. This layer could be whatever you want (memory cache, [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage) among others). This way even allocation or attributes change users will stick with same variation.
 
 ```ts
-const tesfy = new Tesfy.Engine(datafile, {
-  get: (experimentId: string) => {
-    return storage.get(experimentId);
-  },
-  store: (experimentId: string, variationId: string) => {
-    returb storage.save(experimentId, variationId);
+const tesfy = new Tesfy.Engine({
+  datafile,
+  storage: {
+    get: (experimentId: string) => {
+      return storage.get(experimentId);
+    },
+    store: (experimentId: string, variationId: string) => {
+      return storage.save(experimentId, variationId);
+    }
   }
 });
 const userId = '676380e0-7793-44d6-9189-eb5868e17a86';

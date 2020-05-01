@@ -6,20 +6,25 @@ import Storage from './Storage';
 class Engine {
   static readonly TOTAL_BUCKETS = 10000;
 
-  private userId: string;
-  private attributes: Record<string, any>;
   private config: Config;
   private bucketer: Bucketer;
   private evaluator: AudienceEvaluator;
-  private storage: Storage<string> | null;
+  private userId?: string;
+  private attributes?: Record<string, any>;
+  private storage?: Storage<string>;
   private cache: { [id: string]: string } = {};
 
-  constructor(
-    datafile: Datafile,
-    storage: Storage<string> | null = null,
-    userId = '',
-    attributes: Record<string, any> = {}
-  ) {
+  constructor({
+    datafile,
+    userId,
+    attributes,
+    storage
+  }: {
+    datafile: Datafile;
+    storage?: Storage<string>;
+    userId?: string;
+    attributes?: Record<string, any>;
+  }) {
     this.config = new Config(datafile, Engine.TOTAL_BUCKETS);
     this.bucketer = new Bucketer(Engine.TOTAL_BUCKETS);
     this.evaluator = new AudienceEvaluator();
@@ -29,7 +34,7 @@ class Engine {
   }
 
   private computeKey(id: string, userId?: string): string {
-    return (userId || this.userId).concat(id);
+    return (userId || this.userId || '').concat(id);
   }
 
   private getForcedVariation(experimentId: string): string | undefined {
@@ -66,6 +71,20 @@ class Engine {
     return !!this.bucketer.bucket(key, [allocation]);
   }
 
+  getEnabledFeatures(
+    userId?: string,
+    attributes?: Record<string, any>
+  ): { [featureId: string]: boolean } {
+    const features = this.config.getFeatures();
+
+    return Object.keys(features).reduce((features, featureId) => {
+      return {
+        ...features,
+        [featureId]: this.isFeatureEnabled(featureId, userId, attributes)
+      };
+    }, {});
+  }
+
   getVariationId(
     experimentId: string,
     userId?: string,
@@ -96,6 +115,20 @@ class Engine {
     this.storage?.store(experimentId, variationId);
 
     return variationId;
+  }
+
+  getVariationIds(
+    userId?: string,
+    attributes?: Record<string, any>
+  ): { [experimentId: string]: string } {
+    const experiments = this.config.getExperiments();
+
+    return Object.keys(experiments).reduce((experiments, experimentId) => {
+      return {
+        ...experiments,
+        [experimentId]: this.getVariationId(experimentId, userId, attributes)
+      };
+    }, {});
   }
 }
 
