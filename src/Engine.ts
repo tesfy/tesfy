@@ -41,6 +41,14 @@ class Engine {
     return this.cache[experimentId];
   }
 
+  getUserId() {
+    return this.userId;
+  }
+
+  getAttributes() {
+    return this.attributes;
+  }
+
   setUserId(userId: string): void {
     this.userId = userId;
   }
