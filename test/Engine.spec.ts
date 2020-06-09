@@ -14,14 +14,14 @@ describe('Engine', () => {
     const userId = '111180e0-7793-44d6-9189-eb5868e17a86';
     const engine = new Engine({ datafile, userId });
 
-    expect(engine.getVariationId('experiment-1')).toBe(null);
+    expect(engine.getVariationId('experiment-1')).toBeNull();
   });
 
   test('should bucket experiment outside a variation', () => {
     const userId = '111180e0-7793-44d6-9189-eb5868e17a86';
     const engine = new Engine({ datafile, userId });
 
-    expect(engine.getVariationId('experiment-1')).toBe(null);
+    expect(engine.getVariationId('experiment-1')).toBeNull();
   });
 
   test('should get all variations', () => {
@@ -41,14 +41,14 @@ describe('Engine', () => {
 
     engine.setUserId('111180e0-7793-44d6-9189-eb5868e17a86');
 
-    expect(engine.getVariationId('experiment-1')).toBe(null);
+    expect(engine.getVariationId('experiment-1')).toBeNull();
   });
 
   test('should not allocate experiment inside variation', () => {
     const userId = '111180e0-7793-44d6-9189-eb5868e17a86';
     const engine = new Engine({ datafile, userId });
 
-    expect(engine.getVariationId('experiment-2')).toBe(null);
+    expect(engine.getVariationId('experiment-2')).toBeNull();
   });
 
   test('should match audience before bucketing experiment', () => {
@@ -59,7 +59,7 @@ describe('Engine', () => {
       engine.getVariationId('experiment-3', userId, {
         countryCode: 'tr'
       })
-    ).toBe(null);
+    ).toBeNull();
 
     expect(
       engine.getVariationId('experiment-3', userId, {
@@ -72,7 +72,7 @@ describe('Engine', () => {
     const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
     const engine = new Engine({ datafile, userId });
 
-    expect(engine.getVariationId('experiment-3')).toBe(null);
+    expect(engine.getVariationId('experiment-3')).toBeNull();
 
     engine.setAttributes({
       countryCode: 'us'
@@ -85,14 +85,14 @@ describe('Engine', () => {
     const userId = '111180e0-8213-4dd6-9189-eb5868e17a86';
     const engine = new Engine({ datafile, userId });
 
-    expect(engine.isFeatureEnabled('feature-1')).toBe(true);
+    expect(engine.isFeatureEnabled('feature-1')).toBeTruthy();
   });
 
   test('should bucket disabled feature', () => {
     const userId = '111180e0-7793-44d6-9189-eb5868e17a86';
     const engine = new Engine({ datafile, userId });
 
-    expect(engine.isFeatureEnabled('feature-1')).toBe(false);
+    expect(engine.isFeatureEnabled('feature-1')).toBeFalsy();
   });
 
   test('should get all enabled features', () => {
@@ -101,7 +101,7 @@ describe('Engine', () => {
 
     expect(engine.getEnabledFeatures()).toEqual({
       'feature-1': true,
-      'feature-2': false
+      'feature-2': null
     });
   });
 
@@ -109,15 +109,15 @@ describe('Engine', () => {
     const userId = '111180e0-7793-44d6-9189-eb5868e17a86';
     const engine = new Engine({ datafile, userId });
 
-    expect(engine.isFeatureEnabled('feature-x')).toBe(false);
+    expect(engine.isFeatureEnabled('feature-x')).toBeNull();
   });
 
   test('should match audience before bucketing feature', () => {
     const userId = '111180e0-8213-4dd6-9189-eb5868e17a86';
     const engine = new Engine({ datafile });
 
-    expect(engine.isFeatureEnabled('feature-2', userId, { price: 10 })).toBe(false);
-    expect(engine.isFeatureEnabled('feature-2', userId, { price: 60 })).toBe(true);
+    expect(engine.isFeatureEnabled('feature-2', userId, { price: 10 })).toBeNull();
+    expect(engine.isFeatureEnabled('feature-2', userId, { price: 60 })).toBeTruthy();
   });
 
   test('should force variation', () => {
