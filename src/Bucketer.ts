@@ -1,7 +1,5 @@
 // @ts-ignore
 import * as murmurhash from 'murmurhash';
-// @ts-ignore
-import * as lodash from 'lodash';
 import { Allocation } from './Config';
 
 class Bucketer {
@@ -11,8 +9,6 @@ class Bucketer {
   private maxBuckets: number;
 
   constructor(maxBuckets: number) {
-    lodash.join(['a', 'b', 'c'], '~');
-
     this.maxBuckets = maxBuckets;
   }
 
