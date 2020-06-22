@@ -61,19 +61,23 @@ class Engine {
     this.cache[experimentId] = variationId;
   }
 
-  isFeatureEnabled(featureId: string, userId?: string, attributes?: Record<string, any>): boolean {
+  isFeatureEnabled(
+    featureId: string,
+    userId?: string,
+    attributes?: Record<string, any>
+  ): boolean | null {
     const key = this.computeKey(featureId, userId);
     const feature = this.config.getFeature(featureId);
 
     if (!feature) {
-      return false;
+      return null;
     }
 
     const { audience } = feature;
     const allocation = this.config.getFeatureAllocation(featureId);
 
     if (!allocation || !this.evaluator.evaluate(audience, attributes || this.attributes)) {
-      return false;
+      return null;
     }
 
     return !!this.bucketer.bucket(key, [allocation]);
