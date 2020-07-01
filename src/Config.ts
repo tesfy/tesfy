@@ -36,7 +36,7 @@ class Config {
   }
 
   private computeRangeEnd(percentage: number): number {
-    return (this.maxBuckets * percentage) / 100;
+    return (percentage * this.maxBuckets) / 100;
   }
 
   getExperiments(): { [id: string]: Experiment } {
@@ -71,13 +71,25 @@ class Config {
     return { id, rangeEnd };
   }
 
+  getExperimentAllocation(id: string): Allocation | undefined {
+    const experiment = this.getExperiment(id);
+
+    if (!experiment) {
+      return;
+    }
+
+    const rangeEnd = this.computeRangeEnd(experiment.percentage);
+
+    return { id, rangeEnd };
+  }
+
   getExperimentAllocations(id: string): Array<Allocation> {
     const experiment = this.getExperiment(id);
     let acc = 0;
 
     return experiment.variations.map(({ id, percentage }) => {
       acc += percentage / 100;
-      const rangeEnd = acc * this.computeRangeEnd(experiment.percentage);
+      const rangeEnd = acc * this.maxBuckets;
 
       return { id, rangeEnd };
     });
