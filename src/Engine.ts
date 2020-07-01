@@ -18,7 +18,7 @@ class Engine {
     datafile,
     userId,
     attributes,
-    storage,
+    storage
   }: {
     datafile: Datafile;
     storage?: Storage<string>;
@@ -92,7 +92,7 @@ class Engine {
     return Object.keys(features).reduce((features, featureId) => {
       return {
         ...features,
-        [featureId]: this.isFeatureEnabled(featureId, userId, attributes),
+        [featureId]: this.isFeatureEnabled(featureId, userId, attributes)
       };
     }, {});
   }
@@ -145,7 +145,7 @@ class Engine {
     return Object.keys(experiments).reduce((experiments, experimentId) => {
       return {
         ...experiments,
-        [experimentId]: this.getVariationId(experimentId, userId, attributes),
+        [experimentId]: this.getVariationId(experimentId, userId, attributes)
       };
     }, {});
   }
