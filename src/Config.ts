@@ -36,7 +36,7 @@ class Config {
   }
 
   private computeRangeEnd(percentage: number): number {
-    return (percentage * this.maxBuckets) / 100;
+    return Math.floor((percentage * this.maxBuckets) / 100);
   }
 
   getExperiments(): { [id: string]: Experiment } {
@@ -88,8 +88,8 @@ class Config {
     let acc = 0;
 
     return experiment.variations.map(({ id, percentage }) => {
-      acc += percentage / 100;
-      const rangeEnd = acc * this.maxBuckets;
+      acc += percentage;
+      const rangeEnd = this.computeRangeEnd(acc);
 
       return { id, rangeEnd };
     });
