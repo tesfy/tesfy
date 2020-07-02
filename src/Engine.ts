@@ -5,6 +5,7 @@ import Storage from './Storage';
 
 class Engine {
   static readonly TOTAL_BUCKETS = 10000;
+  static readonly TRAFFIC_ALLOCATION_SALT = 'tas';
 
   private config: Config;
   private bucketer: Bucketer;
@@ -33,8 +34,8 @@ class Engine {
     this.attributes = attributes;
   }
 
-  private computeKey(id: string, userId?: string): string {
-    return (userId || this.userId || '').concat(id);
+  private computeKey(id: string, userId = '', salt = ''): string {
+    return (userId || this.userId || '').concat(id).concat(salt);
   }
 
   private getForcedVariation(experimentId: string): string | undefined {
@@ -120,7 +121,14 @@ class Engine {
       return null;
     }
 
-    const key = this.computeKey(experimentId, userId);
+    let key = this.computeKey(experimentId, userId, Engine.TRAFFIC_ALLOCATION_SALT);
+    const allocation = this.config.getExperimentAllocation(experimentId);
+
+    if (!allocation || !this.bucketer.bucket(key, [allocation])) {
+      return null;
+    }
+
+    key = this.computeKey(experimentId, userId);
     const allocations = this.config.getExperimentAllocations(experimentId);
 
     variationId = this.bucketer.bucket(key, allocations);

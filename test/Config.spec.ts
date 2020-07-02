@@ -34,16 +34,20 @@ describe('Config', () => {
 
   test('should get experiment allocations', () => {
     const config = new Config(datafile, TOTAL_BUCKETS);
-    const allocations = config.getExperimentAllocations('experiment-1');
+    const allocations = config.getExperimentAllocations('experiment-2');
 
     expect(allocations).toEqual([
       {
         id: '0',
-        rangeEnd: 3000
+        rangeEnd: 3400
       },
       {
         id: '1',
-        rangeEnd: 7000
+        rangeEnd: 6700
+      },
+      {
+        id: '2',
+        rangeEnd: 10000
       }
     ]);
   });

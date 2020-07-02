@@ -13,10 +13,16 @@
     },
     "experiment-2": {
       "id": "experiment-2",
-      "percentage": 0,
+      "percentage": 30,
       "variations": [{
         "id": "0",
-        "percentage": 100
+        "percentage": 34
+      }, {
+        "id": "1",
+        "percentage": 33
+      }, {
+        "id": "2",
+        "percentage": 33
       }]
     },
     "experiment-3": {
