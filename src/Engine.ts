@@ -5,6 +5,7 @@ import Storage from './Storage';
 
 class Engine {
   static readonly TOTAL_BUCKETS = 10000;
+  static readonly TRAFFIC_ALLOCATION_SALT = 'tas';
 
   private config: Config;
   private bucketer: Bucketer;
@@ -120,7 +121,7 @@ class Engine {
       return null;
     }
 
-    let key = this.computeKey(experimentId, userId, 'audience');
+    let key = this.computeKey(experimentId, userId, Engine.TRAFFIC_ALLOCATION_SALT);
     const allocation = this.config.getExperimentAllocation(experimentId);
 
     if (!allocation || !this.bucketer.bucket(key, [allocation])) {
@@ -130,7 +131,7 @@ class Engine {
     key = this.computeKey(experimentId, userId);
     const allocations = this.config.getExperimentAllocations(experimentId);
 
-    variationId = this.bucketer.bucket(this.computeKey(experimentId, userId), allocations);
+    variationId = this.bucketer.bucket(key, allocations);
     this.storage?.store(experimentId, variationId);
 
     return variationId;
