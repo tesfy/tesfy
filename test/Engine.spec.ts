@@ -3,25 +3,53 @@ import Engine from '../src/Engine';
 import * as datafile from './fixtures/datafile.json';
 
 describe('Engine', () => {
-  test('should bucket experiment into a variation', () => {
+  test('should allocate experiment inside variation', () => {
     const userId = '676380e0-7793-44d6-9189-eb5868e17a86';
     const engine = new Engine({ datafile, userId });
 
     expect(engine.getVariationId('experiment-1')).toBe('0');
   });
 
-  test('should bucket experiment outside a variation', () => {
+  test('should not allocate experiment inside variation', () => {
     const userId = '111180e0-7793-44d6-9189-eb5868e17a86';
     const engine = new Engine({ datafile, userId });
 
     expect(engine.getVariationId('experiment-1')).toBeNull();
   });
 
-  test('should bucket experiment outside a variation', () => {
+  test('should not allocate experiment inside variation due traffic allocation', () => {
     const userId = '111180e0-7793-44d6-9189-eb5868e17a86';
     const engine = new Engine({ datafile, userId });
 
-    expect(engine.getVariationId('experiment-1')).toBeNull();
+    expect(engine.getVariationId('experiment-2')).toBeNull();
+  });
+
+  test('should allocate experiment inside same variation regarding traffic allocation change', () => {
+    const userId = '676380e0-7793-44d6-9189-eb5868e17aqq';
+    const { experiments } = datafile;
+    const experimentId = 'experiment-2';
+    const variationId = '2';
+    let engine;
+
+    engine = new Engine({ datafile, userId });
+
+    expect(engine.getVariationId(experimentId)).toBe(variationId);
+
+    engine = new Engine({
+      datafile: {
+        ...datafile,
+        experiments: {
+          ...experiments,
+          [experimentId]: {
+            ...experiments[experimentId],
+            percentage: 100
+          }
+        }
+      },
+      userId
+    });
+
+    expect(engine.getVariationId(experimentId)).toBe(variationId);
   });
 
   test('should get all variations', () => {
@@ -42,13 +70,6 @@ describe('Engine', () => {
     engine.setUserId('111180e0-7793-44d6-9189-eb5868e17a86');
 
     expect(engine.getVariationId('experiment-1')).toBeNull();
-  });
-
-  test('should not allocate experiment inside variation', () => {
-    const userId = '111180e0-7793-44d6-9189-eb5868e17a86';
-    const engine = new Engine({ datafile, userId });
-
-    expect(engine.getVariationId('experiment-2')).toBeNull();
   });
 
   test('should match audience before bucketing experiment', () => {

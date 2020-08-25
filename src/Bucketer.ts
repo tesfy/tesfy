@@ -4,7 +4,7 @@ import { Allocation } from './Config';
 
 class Bucketer {
   static HASH_SEED = 1;
-  static MAX_HASH_VALUE = Math.pow(2, 32);
+  static MAX_HASH_VALUE = Math.pow(2, 32) - 1;
 
   private maxBuckets: number;
 
