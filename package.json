@@ -1,6 +1,6 @@
 {
   "name": "tesfy",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "Andres Alvarez <a.alvarez.sor@gmail.com>",
   "description": "A lightweight A/B Testing and Feature Flag JavaScript library focused on performance",
   "keywords": [
