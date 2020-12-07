@@ -1,6 +1,6 @@
 import Bucketer from './Bucketer';
 import AudienceEvaluator from './AudienceEvaluator';
-import Config, { Datafile } from './Config';
+import Config, { Datafile, Feature } from './Config';
 import Storage from './Storage';
 
 class Engine {
@@ -82,6 +82,10 @@ class Engine {
     }
 
     return !!this.bucketer.bucket(key, [allocation]);
+  }
+
+  getFeature(featureId: string): Feature {
+    return this.config.getFeature(featureId);
   }
 
   getEnabledFeatures(

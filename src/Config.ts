@@ -13,6 +13,7 @@ export interface Variation {
 export interface Feature {
   id: string;
   percentage: number;
+  data?: Record<string, any>;
   audience?: Record<string, any>;
 }
 
