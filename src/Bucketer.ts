@@ -1,8 +1,8 @@
 // @ts-ignore
 import * as murmurhash from 'murmurhash';
 import { Allocation } from './Config';
-
 class Bucketer {
+  static X = 1;
   static HASH_SEED = 1;
   static MAX_HASH_VALUE = Math.pow(2, 32) - 1;
 
